@@ -1,0 +1,14 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package l2.gameserver.network.l2.s2c;
+
+import l2.gameserver.network.l2.s2c.L2GameServerPacket;
+
+public class ExMagicSkillUseInAirShip
+extends L2GameServerPacket {
+    @Override
+    protected final void writeImpl() {
+        this.writeEx(115);
+    }
+}

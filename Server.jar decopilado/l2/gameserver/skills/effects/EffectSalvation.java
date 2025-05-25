@@ -1,0 +1,39 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package l2.gameserver.skills.effects;
+
+import l2.gameserver.model.Effect;
+import l2.gameserver.skills.effects.EffectTemplate;
+import l2.gameserver.stats.Env;
+
+public final class EffectSalvation
+extends Effect {
+    private final int Dd;
+
+    public EffectSalvation(Env env, EffectTemplate effectTemplate) {
+        super(env, effectTemplate);
+        this.Dd = effectTemplate.getParam().getInteger("expireResurrectTime", 0);
+    }
+
+    @Override
+    public boolean checkCondition() {
+        return this.getEffected().isPlayer() && super.checkCondition();
+    }
+
+    @Override
+    public void onStart() {
+        this.getEffected().setSalvationWindowTime(this.Dd);
+    }
+
+    @Override
+    public void onExit() {
+        super.onExit();
+        this.getEffected().setSalvationWindowTime(-1);
+    }
+
+    @Override
+    public boolean onActionTime() {
+        return false;
+    }
+}

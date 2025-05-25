@@ -1,0 +1,193 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  l2.commons.util.Rnd
+ *  l2.gameserver.model.instances.NpcInstance
+ *  l2.gameserver.model.quest.Quest
+ *  l2.gameserver.model.quest.QuestState
+ *  l2.gameserver.scripts.ScriptFile
+ */
+package quests;
+
+import l2.commons.util.Rnd;
+import l2.gameserver.model.instances.NpcInstance;
+import l2.gameserver.model.quest.Quest;
+import l2.gameserver.model.quest.QuestState;
+import l2.gameserver.scripts.ScriptFile;
+
+public class _601_WatchingEyes
+extends Quest
+implements ScriptFile {
+    private static final int bmS = 31683;
+    private static final int bmT = 21306;
+    private static final int bmU = 21308;
+    private static final int bmV = 21309;
+    private static final int bmW = 21310;
+    private static final int bmX = 21311;
+    private static final int bmY = 6699;
+    private static final int bmZ = 6698;
+    private static final int bna = 6700;
+    private static final int bnb = 7188;
+
+    public void onLoad() {
+    }
+
+    public void onReload() {
+    }
+
+    public void onShutdown() {
+    }
+
+    public _601_WatchingEyes() {
+        super(0);
+        this.addStartNpc(31683);
+        this.addKillId(new int[]{21306, 21308, 21309, 21310, 21311});
+        this.addQuestItem(new int[]{7188});
+    }
+
+    public String onEvent(String string, QuestState questState, NpcInstance npcInstance) {
+        String string2 = string;
+        if (string.equalsIgnoreCase("quest_accept")) {
+            questState.setCond(1);
+            questState.set("argoss_favor", String.valueOf(11), true);
+            questState.setState(2);
+            questState.playSound("ItemSound.quest_accept");
+            string2 = "eye_of_argos_q0601_0104.htm";
+        } else if (string.equalsIgnoreCase("reply_3")) {
+            if (questState.getQuestItemsCount(7188) >= 100L) {
+                int n = Rnd.get((int)1000);
+                questState.takeItems(7188, 100L);
+                if (n < 200) {
+                    questState.giveItems(6699, 5L);
+                    questState.giveItems(57, 90000L);
+                    questState.addExpAndSp(120000L, 10000L);
+                } else if (n < 400) {
+                    questState.giveItems(6698, 5L);
+                    questState.giveItems(57, 80000L);
+                    questState.addExpAndSp(120000L, 10000L);
+                } else if (n < 500) {
+                    questState.giveItems(6700, 5L);
+                    questState.giveItems(57, 40000L);
+                    questState.addExpAndSp(120000L, 10000L);
+                } else if (n < 1000) {
+                    questState.giveItems(57, 230000L);
+                }
+                questState.unset("argoss_favor");
+                questState.playSound("ItemSound.quest_finish");
+                this.giveExtraReward(questState.getPlayer());
+                questState.exitCurrentQuest(true);
+                string2 = "eye_of_argos_q0601_0201.htm";
+            } else {
+                string2 = "eye_of_argos_q0601_0202.htm";
+            }
+        }
+        return string2;
+    }
+
+    public String onTalk(NpcInstance npcInstance, QuestState questState) {
+        String string = "no-quest";
+        int n = questState.getInt("argoss_favor");
+        int n2 = npcInstance.getNpcId();
+        int n3 = questState.getState();
+        switch (n3) {
+            case 1: {
+                if (n2 != 31683) break;
+                if (questState.getPlayer().getLevel() >= 71) {
+                    string = "eye_of_argos_q0601_0101.htm";
+                    break;
+                }
+                string = "eye_of_argos_q0601_0103.htm";
+                questState.exitCurrentQuest(true);
+                break;
+            }
+            case 2: {
+                if (n2 != 31683 || n < 11 || n > 12) break;
+                string = n == 12 && questState.getQuestItemsCount(7188) >= 100L ? "eye_of_argos_q0601_0105.htm" : "eye_of_argos_q0601_0106.htm";
+            }
+        }
+        return string;
+    }
+
+    public String onKill(NpcInstance npcInstance, QuestState questState) {
+        int n = questState.getInt("argoss_favor");
+        int n2 = npcInstance.getNpcId();
+        if (n == 11) {
+            int n3;
+            if (n2 == 21306) {
+                int n4 = Rnd.get((int)1000);
+                if (n4 < 850) {
+                    if (questState.getQuestItemsCount(7188) + 1L >= 100L) {
+                        if (questState.getQuestItemsCount(7188) < 100L) {
+                            questState.setCond(2);
+                            questState.set("argoss_favor", String.valueOf(12), true);
+                            questState.giveItems(7188, 100L - questState.getQuestItemsCount(7188));
+                            questState.playSound("ItemSound.quest_middle");
+                        }
+                    } else {
+                        questState.giveItems(7188, 1L);
+                        questState.playSound("ItemSound.quest_itemget");
+                    }
+                }
+            } else if (n2 == 21308) {
+                int n5 = Rnd.get((int)1000);
+                if (n5 < 790) {
+                    if (questState.getQuestItemsCount(7188) + 1L >= 100L) {
+                        if (questState.getQuestItemsCount(7188) < 100L) {
+                            questState.setCond(2);
+                            questState.set("argoss_favor", String.valueOf(12), true);
+                            questState.giveItems(7188, 100L - questState.getQuestItemsCount(7188));
+                            questState.playSound("ItemSound.quest_middle");
+                        }
+                    } else {
+                        questState.giveItems(7188, 1L);
+                        questState.playSound("ItemSound.quest_itemget");
+                    }
+                }
+            } else if (n2 == 21309) {
+                int n6 = Rnd.get((int)1000);
+                if (n6 < 820) {
+                    if (questState.getQuestItemsCount(7188) + 1L >= 100L) {
+                        if (questState.getQuestItemsCount(7188) < 100L) {
+                            questState.setCond(2);
+                            questState.set("argoss_favor", String.valueOf(12), true);
+                            questState.giveItems(7188, 100L - questState.getQuestItemsCount(7188));
+                            questState.playSound("ItemSound.quest_middle");
+                        }
+                    } else {
+                        questState.giveItems(7188, 1L);
+                        questState.playSound("ItemSound.quest_itemget");
+                    }
+                }
+            } else if (n2 == 21310) {
+                int n7 = Rnd.get((int)1000);
+                if (n7 < 680) {
+                    if (questState.getQuestItemsCount(7188) + 1L >= 100L) {
+                        if (questState.getQuestItemsCount(7188) < 100L) {
+                            questState.setCond(2);
+                            questState.set("argoss_favor", String.valueOf(12), true);
+                            questState.giveItems(7188, 100L - questState.getQuestItemsCount(7188));
+                            questState.playSound("ItemSound.quest_middle");
+                        }
+                    } else {
+                        questState.giveItems(7188, 1L);
+                        questState.playSound("ItemSound.quest_itemget");
+                    }
+                }
+            } else if (n2 == 21311 && (n3 = Rnd.get((int)1000)) < 630) {
+                if (questState.getQuestItemsCount(7188) + 1L >= 100L) {
+                    if (questState.getQuestItemsCount(7188) < 100L) {
+                        questState.setCond(2);
+                        questState.set("argoss_favor", String.valueOf(12), true);
+                        questState.giveItems(7188, 100L - questState.getQuestItemsCount(7188));
+                        questState.playSound("ItemSound.quest_middle");
+                    }
+                } else {
+                    questState.giveItems(7188, 1L);
+                    questState.playSound("ItemSound.quest_itemget");
+                }
+            }
+        }
+        return null;
+    }
+}
