@@ -1,0 +1,929 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package l2.gameserver.model.items;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.ScheduledFuture;
+import l2.commons.collections.LazyArrayList;
+import l2.commons.util.concurrent.atomic.AtomicEnumBitFlag;
+import l2.gameserver.Config;
+import l2.gameserver.ai.CtrlIntention;
+import l2.gameserver.dao.ItemsDAO;
+import l2.gameserver.data.xml.holder.ItemHolder;
+import l2.gameserver.data.xml.holder.PetDataHolder;
+import l2.gameserver.geodata.GeoEngine;
+import l2.gameserver.instancemanager.CursedWeaponsManager;
+import l2.gameserver.instancemanager.ReflectionManager;
+import l2.gameserver.model.Creature;
+import l2.gameserver.model.GameObject;
+import l2.gameserver.model.GameObjectsStorage;
+import l2.gameserver.model.Playable;
+import l2.gameserver.model.Player;
+import l2.gameserver.model.base.Element;
+import l2.gameserver.model.instances.NpcInstance;
+import l2.gameserver.model.items.attachment.ItemAttachment;
+import l2.gameserver.model.items.listeners.ItemEnchantOptionsListener;
+import l2.gameserver.network.l2.s2c.DropItem;
+import l2.gameserver.network.l2.s2c.L2GameServerPacket;
+import l2.gameserver.network.l2.s2c.SpawnItem;
+import l2.gameserver.scripts.Events;
+import l2.gameserver.stats.Env;
+import l2.gameserver.stats.funcs.Func;
+import l2.gameserver.stats.funcs.FuncTemplate;
+import l2.gameserver.taskmanager.ItemsAutoDestroy;
+import l2.gameserver.taskmanager.LazyPrecisionTaskManager;
+import l2.gameserver.templates.item.ItemTemplate;
+import l2.gameserver.templates.item.ItemType;
+import l2.gameserver.templates.item.support.Grade;
+import l2.gameserver.utils.ItemFunctions;
+import l2.gameserver.utils.Location;
+import org.napile.primitive.Containers;
+import org.napile.primitive.sets.IntSet;
+import org.napile.primitive.sets.impl.HashIntSet;
+
+public final class ItemInstance extends GameObject {
+    public static final int[] EMPTY_ENCHANT_OPTIONS = new int[3];
+    private static final long cw = 3162753878915133228L;
+    private static final ItemsDAO b = ItemsDAO.getInstance();
+    public static final int CHARGED_NONE = 0;
+    public static final int CHARGED_SOULSHOT = 1;
+    public static final int CHARGED_SPIRITSHOT = 1;
+    public static final int CHARGED_BLESSED_SPIRITSHOT = 2;
+    public static final int FLAG_NO_DROP = 1;
+    public static final int FLAG_NO_TRADE = 2;
+    public static final int FLAG_NO_TRANSFER = 4;
+    public static final int FLAG_NO_CRYSTALLIZE = 8;
+    public static final int FLAG_NO_ENCHANT = 16;
+    public static final int FLAG_NO_DESTROY = 32;
+    public static final int FLAG_NO_FREIGHT = 64;
+    private ItemAttributes b = new ItemAttributes();
+    private int[] aO;
+    private int oS;
+    private int oT;
+    private long cx;
+    private ItemLocation a;
+    private int kP;
+    private Integer b;
+    private int oU;
+    private int oV;
+    private int oW;
+    private int oX;
+    private int oY;
+    private int oZ;
+    private int pa;
+    private int pb;
+    private int pc;
+    private int pd;
+    private int pe;
+    private AtomicEnumBitFlag<ItemStateFlags> a;
+    private ItemTemplate d;
+    private boolean dH;
+    private long cy;
+    private IntSet d;
+    private long cz;
+    private int pf;
+    private int pg;
+    private boolean dI;
+    private ItemAttachment a;
+    private ScheduledFuture<?> ae;
+
+    public ItemInstance(int var1) {
+        super(var1);
+        this.aO = EMPTY_ENCHANT_OPTIONS;
+        this.oU = -1;
+        this.oV = -9999;
+        this.a = new AtomicEnumBitFlag();
+        this.d = Containers.EMPTY_INT_SET;
+        this.pf = 0;
+        this.pg = 0;
+        this.dI = false;
+    }
+
+    public ItemInstance(int var1, int var2) {
+        super(var1);
+        this.aO = EMPTY_ENCHANT_OPTIONS;
+        this.oU = -1;
+        this.oV = -9999;
+        this.a = new AtomicEnumBitFlag();
+        this.d = Containers.EMPTY_INT_SET;
+        this.pf = 0;
+        this.pg = 0;
+        this.dI = false;
+        this.setItemId(var2);
+        this.setDuration(this.getTemplate().getDurability());
+        this.setPeriodBegin(this.getTemplate().isTemporal() ? (int)(System.currentTimeMillis() / 1000L) + this.getTemplate().getDurability() * 60 : -9999);
+        this.setLocData(-1);
+        this.setEnchantLevel(this.getTemplate().getBaseEnchantLevel());
+    }
+
+    public int getOwnerId() {
+        return this.oS;
+    }
+
+    public void setOwnerId(int var1) {
+        if (this.oS != var1) {
+            this.oS = var1;
+            this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+        }
+    }
+
+    public int getItemId() {
+        return this.oT;
+    }
+
+    public void setVisibleItemId(int var1) {
+        this.pe = var1;
+    }
+
+    public int getVisibleItemId() {
+        return this.pe > 0 ? this.pe : this.getItemId();
+    }
+
+    public void setItemId(int var1) {
+        this.oT = var1;
+        this.d = ItemHolder.getInstance().getTemplate(var1);
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+    }
+
+    public long getCount() {
+        return this.cx;
+    }
+
+    public AtomicEnumBitFlag<ItemStateFlags> getItemStateFlag() {
+        return this.a;
+    }
+
+    public void setCount(long var1) {
+        if (var1 < 0L) {
+            var1 = 0L;
+        }
+
+        if (this.isStackable() && var1 > Config.ITEMS_MAX_AMMOUNT) {
+            this.cx = Config.ITEMS_MAX_AMMOUNT;
+            this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+        } else if (!this.isStackable() && var1 > 1L) {
+            this.cx = 1L;
+            this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+        } else if (this.cx != var1) {
+            this.cx = var1;
+            this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+        }
+    }
+
+    public int getEnchantLevel() {
+        return this.b != null ? this.b : 0;
+    }
+
+    public void setEnchantLevel(int var1) {
+        Integer var2 = this.b;
+        this.b = Math.max(this.getTemplate().getBaseEnchantLevel(), var1);
+        if (var2 != this.b && this.getTemplate().getEnchantOptions().size() > 0) {
+            Player var3 = GameObjectsStorage.getPlayer(this.getOwnerId());
+            if (this.isEquipped() && var3 != null) {
+                ItemEnchantOptionsListener.getInstance().onUnequip(this.getEquipSlot(), this, var3);
+            }
+
+            int[] var4 = (int[])this.getTemplate().getEnchantOptions().get(this.b);
+            this.aO = var4 == null ? EMPTY_ENCHANT_OPTIONS : var4;
+            if (this.isEquipped() && var3 != null) {
+                ItemEnchantOptionsListener.getInstance().onEquip(this.getEquipSlot(), this, var3);
+            }
+        }
+
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+    }
+
+    public void setLocName(String var1) {
+        this.setLocation(ItemInstance.ItemLocation.valueOf(var1));
+    }
+
+    public String getLocName() {
+        return this.a.name();
+    }
+
+    public void setLocation(ItemLocation var1) {
+        if (this.a != var1) {
+            this.a = var1;
+            this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+        }
+    }
+
+    public ItemLocation getLocation() {
+        return this.a;
+    }
+
+    public void setLocData(int var1) {
+        if (this.kP != var1) {
+            this.kP = var1;
+            this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+        }
+    }
+
+    public int getLocData() {
+        return this.kP;
+    }
+
+    public int getBlessed() {
+        return this.pb;
+    }
+
+    public void setBlessed(int var1) {
+        this.pb = var1;
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+    }
+
+    public int getDamaged() {
+        return this.pc;
+    }
+
+    public void setDamaged(int var1) {
+        this.pc = var1;
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+    }
+
+    public int getCustomFlags() {
+        return this.pd;
+    }
+
+    public void setCustomFlags(int var1) {
+        if (this.pd != var1) {
+            this.pd = var1;
+            this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+        }
+    }
+
+    public ItemAttributes getAttributes() {
+        return this.b;
+    }
+
+    public void setAttributes(ItemAttributes var1) {
+        this.b = var1;
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+    }
+
+    public int getDuration() {
+        return !this.isShadowItem() ? -1 : this.oU;
+    }
+
+    public void setDuration(int var1) {
+        this.oU = var1;
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+    }
+
+    public int getPeriod() {
+        return !this.isTemporalItem() ? -9999 : this.oV - (int)(System.currentTimeMillis() / 1000L);
+    }
+
+    public int getPeriodBegin() {
+        return !this.isTemporalItem() ? -9999 : this.oV;
+    }
+
+    public void setPeriodBegin(int var1) {
+        this.oV = var1;
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+    }
+
+    public void startTimer(Runnable var1) {
+        this.ae = LazyPrecisionTaskManager.getInstance().scheduleAtFixedRate(var1, 0L, 60000L);
+    }
+
+    public void stopTimer() {
+        if (this.ae != null) {
+            this.ae.cancel(false);
+            this.ae = null;
+        }
+
+    }
+
+    public boolean isEquipable() {
+        return this.d.isEquipable();
+    }
+
+    public boolean isEquipped() {
+        return this.dH;
+    }
+
+    public void setEquipped(boolean var1) {
+        this.dH = var1;
+    }
+
+    public long getBodyPart() {
+        return this.d.getBodyPart();
+    }
+
+    public int getEquipSlot() {
+        return this.getLocData();
+    }
+
+    public ItemTemplate getTemplate() {
+        return this.d;
+    }
+
+    public void setDropTime(long var1) {
+        this.cy = var1;
+    }
+
+    public long getLastDropTime() {
+        return this.cy;
+    }
+
+    public long getDropTimeOwner() {
+        return this.cz;
+    }
+
+    public ItemType getItemType() {
+        return this.d.getItemType();
+    }
+
+    public boolean isArmor() {
+        return this.d.isArmor();
+    }
+
+    public boolean isAccessory() {
+        return this.d.isAccessory();
+    }
+
+    public boolean isWeapon() {
+        return this.d.isWeapon();
+    }
+
+    public long getReferencePrice() {
+        return this.d.getReferencePrice();
+    }
+
+    public boolean isStackable() {
+        return this.d.isStackable();
+    }
+
+    public void onAction(Player var1, boolean var2) {
+        if (!Events.onAction(var1, this, var2)) {
+            if (!var1.isCursedWeaponEquipped() || !CursedWeaponsManager.getInstance().isCursed(this.getItemId())) {
+                var1.getAI().setIntention(CtrlIntention.AI_INTENTION_PICK_UP, this, (Object)null);
+            }
+        }
+    }
+
+    public int getActingRange() {
+        return 16;
+    }
+
+    public boolean isAugmented() {
+        return this.getVariationStat1() != 0 || this.getVariationStat2() != 0;
+    }
+
+    public int getVariationStat1() {
+        return this.oW;
+    }
+
+    public int getVariationStat2() {
+        return this.oX;
+    }
+
+    public void setVariationStat1(int var1) {
+        this.oW = var1;
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+    }
+
+    public void setVariationStat2(int var1) {
+        this.oX = var1;
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+    }
+
+    public int getEnsoulSlotN1() {
+        return this.oY;
+    }
+
+    public ItemInstance setEnsoulSlotN1(int var1) {
+        this.oY = var1;
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+        return this;
+    }
+
+    public int getEnsoulSlotN2() {
+        return this.oZ;
+    }
+
+    public ItemInstance setEnsoulSlotN2(int var1) {
+        this.oZ = var1;
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+        return this;
+    }
+
+    public int getEnsoulSlotBm() {
+        return this.pa;
+    }
+
+    public ItemInstance setEnsoulSlotBm(int var1) {
+        this.pa = var1;
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+        return this;
+    }
+
+    public boolean isEnsouled() {
+        return this.getEnsoulSlotN1() != 0 || this.getEnsoulSlotN2() != 0 || this.getEnsoulSlotBm() != 0;
+    }
+
+    public int getChargedSoulshot() {
+        return this.pf;
+    }
+
+    public int getChargedSpiritshot() {
+        return this.pg;
+    }
+
+    public boolean getChargedFishshot() {
+        return this.dI;
+    }
+
+    public void setChargedSoulshot(int var1) {
+        this.pf = var1;
+    }
+
+    public void setChargedSpiritshot(int var1) {
+        this.pg = var1;
+    }
+
+    public void setChargedFishshot(boolean var1) {
+        this.dI = var1;
+    }
+
+    public Func[] getStatFuncs() {
+        Func[] var1 = Func.EMPTY_FUNC_ARRAY;
+        LazyArrayList var2 = LazyArrayList.newInstance();
+        if (this.d.getAttachedFuncs().length > 0) {
+            for(FuncTemplate var6 : this.d.getAttachedFuncs()) {
+                Func var7 = var6.getFunc(this);
+                if (var7 != null) {
+                    var2.add(var7);
+                }
+            }
+        }
+
+        for(Element var11 : Element.VALUES) {
+            if (this.isWeapon()) {
+                var2.add(new FuncAttack(var11, 64, this));
+            }
+
+            if (this.isArmor()) {
+                var2.add(new FuncDefence(var11, 64, this));
+            }
+        }
+
+        if (!var2.isEmpty()) {
+            var1 = (Func[])var2.toArray(new Func[var2.size()]);
+        }
+
+        LazyArrayList.recycle(var2);
+        return var1;
+    }
+
+    public boolean isHeroWeapon() {
+        return this.d.isHeroWeapon();
+    }
+
+    public boolean canBeDestroyed(Player var1) {
+        if ((this.getCustomFlags() & 32) == 32) {
+            return false;
+        } else if (var1.isMounted() && PetDataHolder.getInstance().getByControlItemId(this.getItemId()) != null) {
+            return false;
+        } else if (var1.getPetControlItem() == this) {
+            return false;
+        } else if (var1.getEnchantScroll() == this) {
+            return false;
+        } else {
+            return this.isCursed() ? false : this.d.isDestroyable();
+        }
+    }
+
+    public boolean canBeDropped(Player var1, boolean var2) {
+        if (var1.getPlayerAccess().CanDropAnyItems) {
+            return true;
+        } else if ((this.getCustomFlags() & 1) == 1) {
+            return false;
+        } else if (this.isShadowItem()) {
+            return false;
+        } else if (this.isTemporalItem()) {
+            return false;
+        } else if ((this.isAugmented() || this.isEnsouled()) && (!var2 || !Config.DROP_ITEMS_AUGMENTED) && !Config.ALT_ALLOW_DROP_AUGMENTED) {
+            return false;
+        } else if (!ItemFunctions.checkIfCanDiscard(var1, this)) {
+            return false;
+        } else {
+            return this.getVisibleItemId() != this.getItemId() && !Config.ALT_ALLOW_DROP_APPAREANCED ? false : this.d.isDropable();
+        }
+    }
+
+    public boolean canBeTraded(Player var1) {
+        if (this.isEquipped()) {
+            return false;
+        } else if (var1.getPlayerAccess().CanTradeAnyItem) {
+            return true;
+        } else if ((this.getCustomFlags() & 2) == 2) {
+            return false;
+        } else if (this.isShadowItem()) {
+            return false;
+        } else if (this.isTemporalItem()) {
+            return false;
+        } else if ((this.isAugmented() || this.isEnsouled()) && !Config.ALT_ALLOW_TRADE_AUGMENTED) {
+            return false;
+        } else if (!ItemFunctions.checkIfCanDiscard(var1, this)) {
+            return false;
+        } else {
+            return this.getVisibleItemId() != this.getItemId() && !Config.ALT_ALLOW_TRADE_APPAREANCED ? false : this.d.isTradeable();
+        }
+    }
+
+    public boolean canBeSold(Player var1) {
+        if ((this.getCustomFlags() & 32) == 32) {
+            return false;
+        } else if (this.getItemId() == 57) {
+            return false;
+        } else if (this.d.getReferencePrice() == 0L) {
+            return false;
+        } else if (this.isShadowItem()) {
+            return false;
+        } else if (this.isTemporalItem()) {
+            return false;
+        } else if ((this.isAugmented() || this.isEnsouled()) && !Config.ALT_ALLOW_TRADE_AUGMENTED) {
+            return false;
+        } else if (this.getVisibleItemId() != this.getItemId() && !Config.ALT_ALLOW_TRADE_APPAREANCED) {
+            return false;
+        } else if (this.isEquipped()) {
+            return false;
+        } else {
+            return !ItemFunctions.checkIfCanDiscard(var1, this) ? false : this.d.isSellable();
+        }
+    }
+
+    public boolean canBeStored(Player var1, boolean var2) {
+        if ((this.getCustomFlags() & 4) == 4) {
+            return false;
+        } else if (!this.getTemplate().isStoreable()) {
+            return false;
+        } else if (var2 || !this.isShadowItem() && !this.isTemporalItem()) {
+            if (!var2 && (this.isAugmented() || this.isEnsouled()) && !Config.ALT_ALLOW_TRADE_AUGMENTED) {
+                return false;
+            } else if (this.getVisibleItemId() != this.getItemId() && !Config.ALT_ALLOW_TRADE_APPAREANCED) {
+                return false;
+            } else if (this.isEquipped()) {
+                return false;
+            } else if (!ItemFunctions.checkIfCanDiscard(var1, this)) {
+                return false;
+            } else {
+                return var2 || this.d.isTradeable();
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public boolean canBeCrystallized(Player var1) {
+        if ((this.getCustomFlags() & 8) == 8) {
+            return false;
+        } else if (this.isShadowItem()) {
+            return false;
+        } else if (this.isTemporalItem()) {
+            return false;
+        } else {
+            return !ItemFunctions.checkIfCanDiscard(var1, this) ? false : this.d.isCrystallizable();
+        }
+    }
+
+    public boolean canBeEnchanted(boolean var1) {
+        return (this.getCustomFlags() & 16) == 16 ? false : this.d.canBeEnchanted(var1);
+    }
+
+    public boolean canBeExchanged(Player var1) {
+        if ((this.getCustomFlags() & 32) == 32) {
+            return false;
+        } else if (this.isShadowItem()) {
+            return false;
+        } else if (this.isTemporalItem()) {
+            return false;
+        } else {
+            return !ItemFunctions.checkIfCanDiscard(var1, this) ? false : this.d.isDestroyable();
+        }
+    }
+
+    public boolean canBeFreighted(Player var1) {
+        if ((this.getCustomFlags() & 64) == 64) {
+            return false;
+        } else if (this.isShadowItem()) {
+            return false;
+        } else if (this.isTemporalItem()) {
+            return false;
+        } else if (this.isAugmented()) {
+            return false;
+        } else if (this.isEnsouled()) {
+            return false;
+        } else if (this.getTemplate().isQuest()) {
+            return false;
+        } else if (this.isEquipped()) {
+            return false;
+        } else {
+            return !ItemFunctions.checkIfCanDiscard(var1, this) ? false : this.d.isFreightable();
+        }
+    }
+
+    public boolean isShadowItem() {
+        return this.d.isShadowItem();
+    }
+
+    public boolean isTemporalItem() {
+        return this.d.isTemporal();
+    }
+
+    public boolean isAltSeed() {
+        return this.d.isAltSeed();
+    }
+
+    public boolean isCursed() {
+        return this.d.isCursed();
+    }
+
+    public void dropToTheGround(Player var1, NpcInstance var2) {
+        Object var3 = var2;
+        if (var2 == null) {
+            var3 = var1;
+        }
+
+        Location var4 = Location.findAroundPosition((GameObject)var3, 128);
+        if (var1 != null) {
+            this.d = new HashIntSet(1, 2.0F);
+
+            for(Player var6 : var1.getPlayerGroup()) {
+                this.d.add(var6.getObjectId());
+            }
+
+            this.cz = System.currentTimeMillis();
+            if (var2 != null) {
+                if (Config.IGNORE_ITEM_PICKUP_DELAY_MONSTER_IDS.contains(var2.getNpcId())) {
+                    this.cz += Config.IGNORE_ITEM_PICKUP_DELAY;
+                } else if (var2.isRaid()) {
+                    this.cz += Config.NONOWNER_ITEM_PICKUP_DELAY_RAID;
+                } else {
+                    this.cz += Config.NONOWNER_ITEM_PICKUP_DELAY;
+                }
+            } else {
+                this.cz += Config.NONOWNER_ITEM_PICKUP_DELAY;
+            }
+        }
+
+        this.dropMe((Creature)var3, var4);
+        if (this.isHerb()) {
+            ItemsAutoDestroy.getInstance().addHerb(this);
+        } else if (Config.AUTODESTROY_ITEM_AFTER > 0 && !this.isCursed()) {
+            ItemsAutoDestroy.getInstance().addItem(this);
+        }
+
+    }
+
+    public void dropToTheGround(Creature var1, Location var2) {
+        if (GeoEngine.canMoveToCoord(var1.getX(), var1.getY(), var1.getZ(), var2.x, var2.y, var2.z, var1.getGeoIndex())) {
+            this.dropMe(var1, var2);
+        } else {
+            this.dropMe(var1, var1.getLoc());
+        }
+
+        if (this.isHerb()) {
+            ItemsAutoDestroy.getInstance().addHerb(this);
+        } else if (Config.AUTODESTROY_ITEM_AFTER > 0 && !this.isCursed()) {
+            ItemsAutoDestroy.getInstance().addItem(this);
+        }
+
+    }
+
+    public void dropToTheGround(Playable var1, Location var2) {
+        this.setLocation(ItemInstance.ItemLocation.VOID);
+        this.save();
+        if (GeoEngine.canMoveToCoord(var1.getX(), var1.getY(), var1.getZ(), var2.x, var2.y, var2.z, var1.getGeoIndex())) {
+            this.dropMe(var1, var2);
+        } else {
+            this.dropMe(var1, var1.getLoc());
+        }
+
+        if (this.isHerb()) {
+            ItemsAutoDestroy.getInstance().addHerb(this);
+        } else if (Config.AUTODESTROY_ITEM_AFTER > 0 && !this.isCursed()) {
+            ItemsAutoDestroy.getInstance().addItem(this);
+        }
+
+    }
+
+    public void dropMe(Creature var1, Location var2) {
+        if (var1 != null) {
+            this.setReflection(var1.getReflection());
+        }
+
+        this.spawnMe0(var2, var1);
+    }
+
+    public final void pickupMe() {
+        this.decayMe();
+        this.setReflection(ReflectionManager.DEFAULT);
+    }
+
+    public ItemTemplate.ItemClass getItemClass() {
+        return this.d.getItemClass();
+    }
+
+    private int getDefence(Element var1) {
+        return this.isArmor() ? this.getAttributeElementValue(var1, true) : 0;
+    }
+
+    public int getDefenceFire() {
+        return this.getDefence(Element.FIRE);
+    }
+
+    public int getDefenceWater() {
+        return this.getDefence(Element.WATER);
+    }
+
+    public int getDefenceWind() {
+        return this.getDefence(Element.WIND);
+    }
+
+    public int getDefenceEarth() {
+        return this.getDefence(Element.EARTH);
+    }
+
+    public int getDefenceHoly() {
+        return this.getDefence(Element.HOLY);
+    }
+
+    public int getDefenceUnholy() {
+        return this.getDefence(Element.UNHOLY);
+    }
+
+    public int getAttributeElementValue(Element var1, boolean var2) {
+        return this.b.getValue(var1) + (var2 ? this.d.getBaseAttributeValue(var1) : 0);
+    }
+
+    public Element getAttributeElement() {
+        return this.b.getElement();
+    }
+
+    public int getAttributeElementValue() {
+        return this.b.getValue();
+    }
+
+    public Element getAttackElement() {
+        Element var1 = this.isWeapon() ? this.getAttributeElement() : Element.NONE;
+        if (var1 == Element.NONE) {
+            for(Element var5 : Element.VALUES) {
+                if (this.d.getBaseAttributeValue(var5) > 0) {
+                    return var5;
+                }
+            }
+        }
+
+        return var1;
+    }
+
+    public int getAttackElementValue() {
+        return this.isWeapon() ? this.getAttributeElementValue(this.getAttackElement(), true) : 0;
+    }
+
+    public void setAttributeElement(Element var1, int var2) {
+        this.b.setValue(var1, var2);
+        this.getItemStateFlag().set(ItemStateFlags.STATE_CHANGED, true);
+    }
+
+    public boolean isHerb() {
+        return this.getTemplate().isHerb();
+    }
+
+    public Grade getCrystalType() {
+        return this.d.getCrystalType();
+    }
+
+    public int getCrystalItemId() {
+        return this.d.getCrystalItemId();
+    }
+
+    public String getName() {
+        return this.getTemplate().getName();
+    }
+
+    public void save() {
+        b.store(this);
+    }
+
+    public void delete() {
+        b.delete(this);
+    }
+
+    public List<L2GameServerPacket> addPacketList(Player var1, Creature var2) {
+        Object var3 = null;
+        if (var2 != null) {
+            var3 = new DropItem(this, var2.getObjectId());
+        } else {
+            var3 = new SpawnItem(this);
+        }
+
+        return Collections.singletonList(var3);
+    }
+
+    public String toString() {
+        StringBuilder var1 = new StringBuilder();
+        var1.append(this.getTemplate().getItemId());
+        var1.append(" ");
+        if (this.getEnchantLevel() > 0) {
+            var1.append("+");
+            var1.append(this.getEnchantLevel());
+            var1.append(" ");
+        }
+
+        var1.append(this.getTemplate().getName());
+        if (!this.getTemplate().getAdditionalName().isEmpty()) {
+            var1.append(" ");
+            var1.append("\\").append(this.getTemplate().getAdditionalName()).append("\\");
+        }
+
+        var1.append(" ");
+        var1.append("(");
+        var1.append(this.getCount());
+        var1.append(")");
+        var1.append("[");
+        var1.append(this.getObjectId());
+        var1.append("]");
+        return var1.toString();
+    }
+
+    public boolean isItem() {
+        return true;
+    }
+
+    public ItemAttachment getAttachment() {
+        return this.a;
+    }
+
+    public void setAttachment(ItemAttachment var1) {
+        ItemAttachment var2 = this.a;
+        this.a = var1;
+        if (this.a != null) {
+            this.a.setItem(this);
+        }
+
+        if (var2 != null) {
+            var2.setItem((ItemInstance)null);
+        }
+
+    }
+
+    public int[] getEnchantOptions() {
+        return this.aO;
+    }
+
+    public IntSet getDropPlayers() {
+        return this.d;
+    }
+
+    public class FuncAttack extends Func {
+        private final Element a;
+
+        public FuncAttack(Element var2, int var3, Object var4) {
+            super(var2.getAttack(), var3, var4);
+            this.a = var2;
+        }
+
+        public void calc(Env var1) {
+            var1.value += (double)ItemInstance.this.getAttributeElementValue(this.a, true);
+        }
+    }
+
+    public class FuncDefence extends Func {
+        private final Element b;
+
+        public FuncDefence(Element var2, int var3, Object var4) {
+            super(var2.getDefence(), var3, var4);
+            this.b = var2;
+        }
+
+        public void calc(Env var1) {
+            var1.value += (double)ItemInstance.this.getAttributeElementValue(this.b, true);
+        }
+    }
+
+    public static enum ItemLocation {
+        VOID,
+        INVENTORY,
+        PAPERDOLL,
+        PET_INVENTORY,
+        PET_PAPERDOLL,
+        WAREHOUSE,
+        CLANWH,
+        FREIGHT,
+        /** @deprecated */
+        @Deprecated
+        LEASE,
+        MAIL;
+
+        private ItemLocation() {
+        }
+    }
+}

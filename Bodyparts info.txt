@@ -1,0 +1,74 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package l2.gameserver.templates.item;
+
+public enum Bodypart {
+    NONE(0L),
+    CHEST(1024L),
+    BELT(268435456L),
+    RIGHT_BRACELET(1048576L),
+    LEFT_BRACELET(2097152L),
+    BROOCH(536870912L),
+    FULL_ARMOR(32768L),
+    HEAD(64L),
+    HAIR(65536L),
+    FACE(262144L),
+    HAIR_ALL(524288L),
+    UNDERWEAR(1L),
+    BACK(8192L),
+    NECKLACE(8L),
+    LEGS(2048L),
+    FEET(4096L),
+    GLOVES(512L),
+    RIGHT_HAND(128L),
+    LEFT_HAND(256L),
+    LEFT_RIGHT_HAND(16384L),
+    RIGHT_EAR(2L),
+    LEFT_EAR(4L),
+    RIGHT_FINGER(16L),
+    FORMAL_WEAR(131072L),
+    TALISMAN(4194304L),
+    BROOCH_JEWEL(1073741824L),
+    AGATHION_CHARM(206158430208L),
+    LEFT_FINGER(32L),
+    WOLF(-100L, CHEST),
+    GREAT_WOLF(-104L, CHEST),
+    HATCHLING(-101L, CHEST),
+    STRIDER(-102L, CHEST),
+    BABY_PET(-103L, CHEST),
+    PENDANT(-105L, NECKLACE);
+
+    private long dO;
+    private Bodypart a;
+    public static final Bodypart[] VALUES = values();
+
+    private Bodypart(long var3) {
+        this(var3, (Bodypart)null);
+    }
+
+    private Bodypart(long var3, Bodypart var5) {
+        this.dO = var3;
+        this.a = var5;
+    }
+
+    public static Bodypart getBodypartByMask(long var0) {
+        for(Bodypart var5 : VALUES) {
+            if (var5.mask() == var0) {
+                return var5;
+            }
+        }
+
+        return null;
+    }
+
+    public long mask() {
+        return this.dO;
+    }
+
+    public Bodypart getReal() {
+        return this.a;
+    }
+}

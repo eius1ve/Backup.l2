@@ -1,0 +1,737 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package l2.gameserver.model.items;
+
+import java.util.Comparator;
+import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import l2.commons.listener.ListenerList;
+import l2.gameserver.data.xml.holder.ItemHolder;
+import l2.gameserver.listener.inventory.OnDisplayListener;
+import l2.gameserver.listener.inventory.OnEquipListener;
+import l2.gameserver.model.Playable;
+import l2.gameserver.model.Player;
+import l2.gameserver.model.items.listeners.StatsListener;
+import l2.gameserver.templates.item.ItemTemplate;
+import l2.gameserver.templates.item.EtcItemTemplate.EtcItemType;
+import l2.gameserver.templates.item.WeaponTemplate.WeaponType;
+import l2.gameserver.utils.MapUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public abstract class Inventory extends ItemContainer {
+    private static final Logger cr = LoggerFactory.getLogger(Inventory.class);
+    public static final int PAPERDOLL_UNDER = 0;
+    public static final int PAPERDOLL_HEAD = 1;
+    public static final int PAPERDOLL_HAIR = 2;
+    public static final int PAPERDOLL_DHAIR = 3;
+    public static final int PAPERDOLL_NECK = 4;
+    public static final int PAPERDOLL_RHAND = 5;
+    public static final int PAPERDOLL_CHEST = 6;
+    public static final int PAPERDOLL_LHAND = 7;
+    public static final int PAPERDOLL_REAR = 8;
+    public static final int PAPERDOLL_LEAR = 9;
+    public static final int PAPERDOLL_GLOVES = 10;
+    public static final int PAPERDOLL_LEGS = 11;
+    public static final int PAPERDOLL_FEET = 12;
+    public static final int PAPERDOLL_RFINGER = 13;
+    public static final int PAPERDOLL_LFINGER = 14;
+    public static final int PAPERDOLL_LBRACELET = 15;
+    public static final int PAPERDOLL_RBRACELET = 16;
+    public static final int PAPERDOLL_AGATHION1 = 17;
+    public static final int PAPERDOLL_AGATHION2 = 18;
+    public static final int PAPERDOLL_AGATHION3 = 19;
+    public static final int PAPERDOLL_AGATHION4 = 20;
+    public static final int PAPERDOLL_AGATHION5 = 21;
+    public static final int PAPERDOLL_DECO1 = 22;
+    public static final int PAPERDOLL_DECO2 = 23;
+    public static final int PAPERDOLL_DECO3 = 24;
+    public static final int PAPERDOLL_DECO4 = 25;
+    public static final int PAPERDOLL_DECO5 = 26;
+    public static final int PAPERDOLL_DECO6 = 27;
+    public static final int PAPERDOLL_BACK = 28;
+    public static final int PAPERDOLL_BELT = 29;
+    public static final int PAPERDOLL_BROOCH = 30;
+    public static final int PAPERDOLL_BROOCH_JEWEL1 = 31;
+    public static final int PAPERDOLL_BROOCH_JEWEL2 = 32;
+    public static final int PAPERDOLL_BROOCH_JEWEL3 = 33;
+    public static final int PAPERDOLL_BROOCH_JEWEL4 = 34;
+    public static final int PAPERDOLL_BROOCH_JEWEL5 = 35;
+    public static final int PAPERDOLL_BROOCH_JEWEL6 = 36;
+    public static final int PAPERDOLL_ARTIFACT_BOOK = 37;
+    public static final int PAPERDOLL_ARTIFACT1 = 38;
+    public static final int PAPERDOLL_ARTIFACT2 = 39;
+    public static final int PAPERDOLL_ARTIFACT3 = 40;
+    public static final int PAPERDOLL_ARTIFACT4 = 41;
+    public static final int PAPERDOLL_ARTIFACT5 = 42;
+    public static final int PAPERDOLL_ARTIFACT6 = 43;
+    public static final int PAPERDOLL_ARTIFACT7 = 44;
+    public static final int PAPERDOLL_ARTIFACT8 = 45;
+    public static final int PAPERDOLL_ARTIFACT9 = 46;
+    public static final int PAPERDOLL_ARTIFACT10 = 47;
+    public static final int PAPERDOLL_ARTIFACT11 = 48;
+    public static final int PAPERDOLL_ARTIFACT12 = 49;
+    public static final int PAPERDOLL_ARTIFACT13 = 50;
+    public static final int PAPERDOLL_ARTIFACT14 = 51;
+    public static final int PAPERDOLL_ARTIFACT15 = 52;
+    public static final int PAPERDOLL_ARTIFACT16 = 53;
+    public static final int PAPERDOLL_ARTIFACT17 = 54;
+    public static final int PAPERDOLL_ARTIFACT18 = 55;
+    public static final int PAPERDOLL_ARTIFACT19 = 56;
+    public static final int PAPERDOLL_ARTIFACT20 = 57;
+    public static final int PAPERDOLL_ARTIFACT21 = 58;
+    public static final int PAPERDOLL_MAX = 59;
+    public static final int[] PAPERDOLL_ORDER = new int[]{0, 8, 9, 4, 13, 14, 1, 5, 7, 10, 6, 11, 12, 28, 5, 3, 2, 16, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58};
+    public static final int[] PAPERDOLL_VISUAL_ORDER = new int[]{5, 7, 10, 6, 11, 12, 3, 2, 28};
+    private static final Map<Long, BiConsumer<Inventory, ItemInstance>> bp = MapUtils.mapBuilder().add(16384L, (BiConsumer)(var0, var1) -> {
+        var0.setPaperdollItem(7, (ItemInstance)null);
+        var0.setPaperdollItem(5, var1);
+    }).add(256L, (BiConsumer)(var0, var1) -> {
+        ItemInstance var2 = var0.getPaperdollItem(5);
+        ItemTemplate var3 = var2 == null ? null : var2.getTemplate();
+        ItemTemplate var4 = var1.getTemplate();
+        if (var4.getItemType() != EtcItemType.ARROW && var4.getItemType() != EtcItemType.ARROW_QUIVER) {
+            if (var4.getItemType() == EtcItemType.BAIT) {
+                if (var3 == null) {
+                    return;
+                }
+
+                if (var3.getItemType() != WeaponType.ROD) {
+                    return;
+                }
+
+                if (!var0.getActor().isPlayer()) {
+                    return;
+                }
+
+                Player var5 = (Player)var0.getActor();
+                var5.setVar("LastLure", String.valueOf(var1.getObjectId()), -1L);
+            } else if (var3 != null && var3.getBodyPart() == 16384L) {
+                var0.setPaperdollItem(5, (ItemInstance)null);
+            }
+        } else {
+            if (var3 == null) {
+                return;
+            }
+
+            if (var3.getItemType() != WeaponType.BOW) {
+                return;
+            }
+
+            if (var3.getCrystalType() != var4.getCrystalType()) {
+                return;
+            }
+        }
+
+        var0.setPaperdollItem(7, var1);
+    }).add(128L, (BiConsumer)(var0, var1) -> var0.setPaperdollItem(5, var1)).addKeys((BiConsumer)(var0, var1) -> {
+        if (var0.getPaperdollItem(8) == null) {
+            var0.setPaperdollItem(8, var1);
+        } else if (var0.getPaperdollItem(9) == null) {
+            var0.setPaperdollItem(9, var1);
+        } else {
+            var0.setPaperdollItem(9, var1);
+        }
+
+    }, new Long[]{4L, 2L, 6L}).addKeys((BiConsumer)(var0, var1) -> {
+        if (var0.getPaperdollItem(13) == null) {
+            var0.setPaperdollItem(13, var1);
+        } else if (var0.getPaperdollItem(14) == null) {
+            var0.setPaperdollItem(14, var1);
+        } else {
+            var0.setPaperdollItem(14, var1);
+        }
+
+    }, new Long[]{32L, 16L, 48L}).add(8L, (BiConsumer)(var0, var1) -> var0.setPaperdollItem(4, var1)).add(32768L, (BiConsumer)(var0, var1) -> {
+        var0.setPaperdollItem(11, (ItemInstance)null);
+        var0.setPaperdollItem(6, var1);
+    }).add(1024L, (BiConsumer)(var0, var1) -> var0.setPaperdollItem(6, var1)).add(2048L, (BiConsumer)(var0, var1) -> {
+        ItemInstance var2 = var0.getPaperdollItem(6);
+        if (var2 != null && var2.getBodyPart() == 32768L || var0.getPaperdollBodyPart(6) == 131072L) {
+            var0.setPaperdollItem(6, (ItemInstance)null);
+        }
+
+        var0.setPaperdollItem(11, var1);
+    }).add(4096L, (BiConsumer)(var0, var1) -> {
+        if (var0.getPaperdollBodyPart(6) == 131072L) {
+            var0.setPaperdollItem(6, (ItemInstance)null);
+        }
+
+        var0.setPaperdollItem(12, var1);
+    }).add(512L, (BiConsumer)(var0, var1) -> {
+        if (var0.getPaperdollBodyPart(6) == 131072L) {
+            var0.setPaperdollItem(6, (ItemInstance)null);
+        }
+
+        var0.setPaperdollItem(10, var1);
+    }).add(64L, (BiConsumer)(var0, var1) -> {
+        if (var0.getPaperdollBodyPart(6) == 131072L) {
+            var0.setPaperdollItem(6, (ItemInstance)null);
+        }
+
+        var0.setPaperdollItem(1, var1);
+    }).add(65536L, (BiConsumer)(var0, var1) -> {
+        ItemInstance var2 = var0.getPaperdollItem(3);
+        if (var2 != null && var2.getBodyPart() == 524288L) {
+            var0.setPaperdollItem(3, (ItemInstance)null);
+        }
+
+        var0.setPaperdollItem(2, var1);
+    }).add(262144L, (BiConsumer)(var0, var1) -> {
+        ItemInstance var2 = var0.getPaperdollItem(3);
+        if (var2 != null && var2.getBodyPart() == 524288L) {
+            var0.setPaperdollItem(2, (ItemInstance)null);
+        }
+
+        var0.setPaperdollItem(3, var1);
+    }).add(524288L, (BiConsumer)(var0, var1) -> {
+        var0.setPaperdollItem(2, (ItemInstance)null);
+        var0.setPaperdollItem(3, var1);
+    }).add(1L, (BiConsumer)(var0, var1) -> var0.setPaperdollItem(0, var1)).add(268435456L, (BiConsumer)(var0, var1) -> var0.setPaperdollItem(29, var1)).add(8192L, (BiConsumer)(var0, var1) -> var0.setPaperdollItem(28, var1)).add(2097152L, (BiConsumer)(var0, var1) -> var0.setPaperdollItem(15, var1)).add(131072L, (BiConsumer)(var0, var1) -> {
+        var0.setPaperdollItem(11, (ItemInstance)null);
+        var0.setPaperdollItem(1, (ItemInstance)null);
+        var0.setPaperdollItem(12, (ItemInstance)null);
+        var0.setPaperdollItem(10, (ItemInstance)null);
+        var0.setPaperdollItem(6, var1);
+    }).add(1048576L, (BiConsumer)(var0, var1) -> var0.setPaperdollItem(16, var1)).add(4194304L, (BiConsumer)(var0, var1) -> {
+        if (var0.getPaperdollItem(22) == null) {
+            var0.setPaperdollItem(22, var1);
+        } else if (var0.getPaperdollItem(23) == null) {
+            var0.setPaperdollItem(23, var1);
+        } else if (var0.getPaperdollItem(24) == null) {
+            var0.setPaperdollItem(24, var1);
+        } else if (var0.getPaperdollItem(25) == null) {
+            var0.setPaperdollItem(25, var1);
+        } else if (var0.getPaperdollItem(26) == null) {
+            var0.setPaperdollItem(26, var1);
+        } else if (var0.getPaperdollItem(27) == null) {
+            var0.setPaperdollItem(27, var1);
+        } else {
+            var0.setPaperdollItem(22, var1);
+        }
+
+    }).add(536870912L, (BiConsumer)(var0, var1) -> var0.setPaperdollItem(30, var1)).add(1073741824L, (BiConsumer)(var0, var1) -> {
+        if (var0.getPaperdollItem(31) == null) {
+            var0.setPaperdollItem(31, var1);
+        } else if (var0.getPaperdollItem(32) == null) {
+            var0.setPaperdollItem(32, var1);
+        } else if (var0.getPaperdollItem(33) == null) {
+            var0.setPaperdollItem(33, var1);
+        } else if (var0.getPaperdollItem(34) == null) {
+            var0.setPaperdollItem(34, var1);
+        } else if (var0.getPaperdollItem(35) == null) {
+            var0.setPaperdollItem(35, var1);
+        } else if (var0.getPaperdollItem(36) == null) {
+            var0.setPaperdollItem(36, var1);
+        } else {
+            var0.setPaperdollItem(31, var1);
+        }
+
+    }).add(206158430208L, (BiConsumer)(var0, var1) -> {
+        if (var0.getPaperdollItem(17) == null) {
+            var0.setPaperdollItem(17, var1);
+        } else if (var0.getPaperdollItem(18) == null) {
+            var0.setPaperdollItem(18, var1);
+        } else if (var0.getPaperdollItem(19) == null) {
+            var0.setPaperdollItem(19, var1);
+        } else if (var0.getPaperdollItem(20) == null) {
+            var0.setPaperdollItem(20, var1);
+        } else if (var0.getPaperdollItem(21) == null) {
+            var0.setPaperdollItem(21, var1);
+        } else {
+            var0.setPaperdollItem(17, var1);
+        }
+
+    }).build();
+    private static final Map<Long, BiFunction<Inventory, ItemInstance, Integer>> bq = MapUtils.mapBuilder().add(8L, (BiFunction)(var0, var1) -> 4).add(4L, (BiFunction)(var0, var1) -> 9).add(2L, (BiFunction)(var0, var1) -> 8).add(6L, (BiFunction)(var0, var1) -> {
+        if (var1 == null) {
+            return -1;
+        } else if (var0.getPaperdollItem(9) == var1) {
+            return 9;
+        } else {
+            return var0.getPaperdollItem(8) == var1 ? 8 : -1;
+        }
+    }).add(32L, (BiFunction)(var0, var1) -> 14).add(16L, (BiFunction)(var0, var1) -> 13).add(48L, (BiFunction)(var0, var1) -> {
+        if (var1 == null) {
+            return -1;
+        } else if (var0.getPaperdollItem(14) == var1) {
+            return 14;
+        } else {
+            return var0.getPaperdollItem(13) == var1 ? 13 : -1;
+        }
+    }).add(65536L, (BiFunction)(var0, var1) -> 2).add(262144L, (BiFunction)(var0, var1) -> 3).add(524288L, (BiFunction)(var0, var1) -> {
+        var0.setPaperdollItem(3, (ItemInstance)null);
+        return 2;
+    }).add(64L, (BiFunction)(var0, var1) -> 1).add(128L, (BiFunction)(var0, var1) -> 5).add(256L, (BiFunction)(var0, var1) -> 7).add(512L, (BiFunction)(var0, var1) -> 10).add(2048L, (BiFunction)(var0, var1) -> 11).addKeys((BiFunction)(var0, var1) -> 6, new Long[]{1024L, 32768L, 131072L}).add(8192L, (BiFunction)(var0, var1) -> 28).add(4096L, (BiFunction)(var0, var1) -> 12).add(1L, (BiFunction)(var0, var1) -> 0).add(268435456L, (BiFunction)(var0, var1) -> 29).add(16384L, (BiFunction)(var0, var1) -> {
+        var0.setPaperdollItem(7, (ItemInstance)null);
+        return 5;
+    }).add(2097152L, (BiFunction)(var0, var1) -> 15).add(1048576L, (BiFunction)(var0, var1) -> {
+        var0.setPaperdollItem(22, (ItemInstance)null);
+        var0.setPaperdollItem(23, (ItemInstance)null);
+        var0.setPaperdollItem(24, (ItemInstance)null);
+        var0.setPaperdollItem(25, (ItemInstance)null);
+        var0.setPaperdollItem(26, (ItemInstance)null);
+        var0.setPaperdollItem(27, (ItemInstance)null);
+        return 16;
+    }).add(4194304L, (BiFunction)(var0, var1) -> {
+        if (var1 == null) {
+            return -1;
+        } else if (var0.getPaperdollItem(22) == var1) {
+            return 22;
+        } else if (var0.getPaperdollItem(23) == var1) {
+            return 23;
+        } else if (var0.getPaperdollItem(24) == var1) {
+            return 24;
+        } else if (var0.getPaperdollItem(25) == var1) {
+            return 25;
+        } else if (var0.getPaperdollItem(26) == var1) {
+            return 26;
+        } else {
+            return var0.getPaperdollItem(27) == var1 ? 27 : -1;
+        }
+    }).add(536870912L, (BiFunction)(var0, var1) -> {
+        var0.setPaperdollItem(31, (ItemInstance)null);
+        var0.setPaperdollItem(32, (ItemInstance)null);
+        var0.setPaperdollItem(33, (ItemInstance)null);
+        var0.setPaperdollItem(34, (ItemInstance)null);
+        var0.setPaperdollItem(35, (ItemInstance)null);
+        var0.setPaperdollItem(36, (ItemInstance)null);
+        return 30;
+    }).add(1073741824L, (BiFunction)(var0, var1) -> {
+        if (var1 == null) {
+            return -1;
+        } else if (var0.getPaperdollItem(31) == var1) {
+            return 31;
+        } else if (var0.getPaperdollItem(32) == var1) {
+            return 32;
+        } else if (var0.getPaperdollItem(33) == var1) {
+            return 33;
+        } else if (var0.getPaperdollItem(34) == var1) {
+            return 34;
+        } else if (var0.getPaperdollItem(35) == var1) {
+            return 35;
+        } else {
+            return var0.getPaperdollItem(36) == var1 ? 36 : -1;
+        }
+    }).add(2097152L, (BiFunction)(var0, var1) -> {
+        var0.setPaperdollItem(17, (ItemInstance)null);
+        var0.setPaperdollItem(18, (ItemInstance)null);
+        var0.setPaperdollItem(19, (ItemInstance)null);
+        var0.setPaperdollItem(20, (ItemInstance)null);
+        var0.setPaperdollItem(21, (ItemInstance)null);
+        return 15;
+    }).add(206158430208L, (BiFunction)(var0, var1) -> {
+        if (var1 == null) {
+            return -1;
+        } else if (var0.getPaperdollItem(17) == var1) {
+            return 17;
+        } else if (var0.getPaperdollItem(18) == var1) {
+            return 18;
+        } else if (var0.getPaperdollItem(19) == var1) {
+            return 19;
+        } else if (var0.getPaperdollItem(20) == var1) {
+            return 20;
+        } else {
+            return var0.getPaperdollItem(21) == var1 ? 21 : -1;
+        }
+    }).build();
+    protected final int _ownerId;
+    protected final ItemInstance[] _paperdoll = new ItemInstance[59];
+    protected final InventoryListenerList _listeners = new InventoryListenerList();
+    protected OnDisplayListener _onDisplayListener;
+    protected int _totalWeight;
+    protected long _wearedMask;
+
+    protected Inventory(int var1) {
+        this._ownerId = var1;
+        this.addListener(StatsListener.getInstance());
+    }
+
+    public abstract Playable getActor();
+
+    protected abstract ItemInstance.ItemLocation getBaseLocation();
+
+    protected abstract ItemInstance.ItemLocation getEquipLocation();
+
+    public int getOwnerId() {
+        return this._ownerId;
+    }
+
+    protected void onRestoreItem(ItemInstance var1) {
+        this._totalWeight = (int)((long)this._totalWeight + (long)var1.getTemplate().getWeight() * var1.getCount());
+    }
+
+    protected void onAddItem(ItemInstance var1) {
+        var1.setOwnerId(this.getOwnerId());
+        var1.setLocation(this.getBaseLocation());
+        var1.setLocData(this.x());
+        this.sendAddItem(var1);
+        this.refreshWeight();
+        var1.save();
+    }
+
+    protected void onModifyItem(ItemInstance var1) {
+        this.sendModifyItem(var1);
+        this.refreshWeight();
+    }
+
+    protected void onRemoveItem(ItemInstance var1) {
+        if (var1.isEquipped()) {
+            this.unEquipItem(var1);
+        }
+
+        this.sendRemoveItem(var1);
+        var1.setLocData(-1);
+        var1.save();
+        this.refreshWeight();
+    }
+
+    protected void onDestroyItem(ItemInstance var1) {
+        var1.setCount(0L);
+        var1.delete();
+    }
+
+    protected void onEquip(int var1, ItemInstance var2) {
+        this._listeners.onEquip(var1, var2);
+        var2.setLocation(this.getEquipLocation());
+        var2.setLocData(var1);
+        var2.setEquipped(true);
+        this.sendModifyItem(var2);
+        this._wearedMask |= var2.getTemplate().getItemMask();
+        var2.save();
+    }
+
+    protected void onUnequip(int var1, ItemInstance var2) {
+        var2.setLocation(this.getBaseLocation());
+        var2.setLocData(this.x());
+        var2.setEquipped(false);
+        var2.setChargedSpiritshot(0);
+        var2.setChargedSoulshot(0);
+        this.sendModifyItem(var2);
+        this._wearedMask &= ~var2.getTemplate().getItemMask();
+        this._listeners.onUnequip(var1, var2);
+        var2.save();
+    }
+
+    private int x() {
+        int var2 = 0;
+
+        label28:
+        for(var2 = 0; var2 < this._items.size(); ++var2) {
+            for(int var3 = 0; var3 < this._items.size(); ++var3) {
+                ItemInstance var1 = (ItemInstance)this._items.get(var3);
+                if (!var1.isEquipped() && !var1.getTemplate().isQuest() && var1.getEquipSlot() == var2) {
+                    ;
+                }
+            }
+        }
+
+        return var2;
+    }
+
+    public ItemInstance getPaperdollItem(int var1) {
+        return this._paperdoll[var1];
+    }
+
+    public ItemInstance[] getPaperdollItems() {
+        return this._paperdoll;
+    }
+
+    public long getPaperdollBodyPart(int var1) {
+        ItemInstance var2 = this.getPaperdollItem(var1);
+        if (var2 != null) {
+            return var2.getBodyPart();
+        } else {
+            if (var1 == 2) {
+                var2 = this._paperdoll[3];
+                if (var2 != null) {
+                    return var2.getBodyPart();
+                }
+            }
+
+            return 0L;
+        }
+    }
+
+    public int getPaperdollItemId(int var1) {
+        ItemInstance var2 = this.getPaperdollItem(var1);
+        if (var2 != null) {
+            if (this.getOnDisplayListener() != null) {
+                Integer var5 = this.getOnDisplayListener().onDisplay(var1, var2, this.getActor());
+                if (var5 != null) {
+                    return var5;
+                }
+            }
+
+            return var2.getVisibleItemId();
+        } else {
+            if (var1 == 2) {
+                var2 = this._paperdoll[3];
+                if (var2 != null) {
+                    return var2.getVisibleItemId();
+                }
+            }
+
+            if (this.getOnDisplayListener() != null) {
+                Integer var3 = this.getOnDisplayListener().onDisplay(var1, (ItemInstance)null, this.getActor());
+                if (var3 != null) {
+                    return var3;
+                }
+            }
+
+            return 0;
+        }
+    }
+
+    public int getPaperdollObjectId(int var1) {
+        ItemInstance var2 = this._paperdoll[var1];
+        if (var2 != null) {
+            return var2.getObjectId();
+        } else {
+            if (var1 == 2) {
+                var2 = this._paperdoll[3];
+                if (var2 != null) {
+                    return var2.getObjectId();
+                }
+            }
+
+            return 0;
+        }
+    }
+
+    public void addListener(OnEquipListener var1) {
+        this._listeners.add(var1);
+    }
+
+    public void removeListener(OnEquipListener var1) {
+        this._listeners.remove(var1);
+    }
+
+    public InventoryListenerList getListeners() {
+        return this._listeners;
+    }
+
+    public OnDisplayListener getOnDisplayListener() {
+        return this._onDisplayListener;
+    }
+
+    public void setOnDisplayListener(OnDisplayListener var1) {
+        this._onDisplayListener = var1;
+    }
+
+    public ItemInstance setPaperdollItem(int var1, ItemInstance var2) {
+        this.writeLock();
+
+        ItemInstance var3;
+        try {
+            var3 = this._paperdoll[var1];
+            if (var3 != var2) {
+                if (var3 != null) {
+                    this._paperdoll[var1] = null;
+                    this.onUnequip(var1, var3);
+                }
+
+                if (var2 != null) {
+                    this._paperdoll[var1] = var2;
+                    this.onEquip(var1, var2);
+                }
+            }
+        } finally {
+            this.writeUnlock();
+        }
+
+        return var3;
+    }
+
+    public long getWearedMask() {
+        return this._wearedMask;
+    }
+
+    public void unEquipItem(ItemInstance var1) {
+        if (var1.isEquipped()) {
+            this.a(var1.getBodyPart(), var1);
+        }
+
+    }
+
+    public void unEquipItemInBodySlot(long var1) {
+        this.a(var1, (ItemInstance)null);
+    }
+
+    private void a(long var1, ItemInstance var3) {
+        BiFunction var4 = (BiFunction)bq.get(var1);
+        if (var4 == null) {
+            cr.warn("Requested invalid body slot: " + var1 + ", Item: " + var3 + ", ownerId: '" + this.getOwnerId() + "'");
+        } else {
+            int var5 = (Integer)var4.apply(this, var3);
+            if (var5 >= 0) {
+                this.setPaperdollItem(var5, (ItemInstance)null);
+            }
+
+        }
+    }
+
+    public void equipItem(ItemInstance var1) {
+        double var2 = this.getActor().getCurrentHp();
+        double var4 = this.getActor().getCurrentMp();
+        double var6 = this.getActor().getCurrentCp();
+        long var8 = var1.getBodyPart();
+        BiConsumer var10 = (BiConsumer)bp.get(var8);
+        if (var10 == null) {
+            cr.warn("unknown body slot:" + var8 + " for item id: " + var1.getItemId());
+        } else {
+            var10.accept(this, var1);
+            this.getActor().setCurrentHp(var2, false);
+            this.getActor().setCurrentMp(var4);
+            this.getActor().setCurrentCp(var6);
+            if (this.getActor().isPlayer()) {
+                ((Player)this.getActor()).autoShot();
+            }
+
+        }
+    }
+
+    protected abstract void sendAddItem(ItemInstance var1);
+
+    protected abstract void sendModifyItem(ItemInstance var1);
+
+    protected abstract void sendRemoveItem(ItemInstance var1);
+
+    protected void refreshWeight() {
+        int var1 = 0;
+        this.readLock();
+
+        try {
+            for(int var3 = 0; var3 < this._items.size(); ++var3) {
+                ItemInstance var2 = (ItemInstance)this._items.get(var3);
+                var1 = (int)((long)var1 + (long)var2.getTemplate().getWeight() * var2.getCount());
+            }
+        } finally {
+            this.readUnlock();
+        }
+
+        if (this._totalWeight != var1) {
+            this._totalWeight = var1;
+            this.onRefreshWeight();
+        }
+    }
+
+    protected abstract void onRefreshWeight();
+
+    public int getTotalWeight() {
+        return this._totalWeight;
+    }
+
+    public boolean validateCapacity(ItemInstance var1) {
+        long var2 = 0L;
+        if (!var1.isStackable() || this.getItemByItemId(var1.getItemId()) == null) {
+            ++var2;
+        }
+
+        return this.validateCapacity(var2);
+    }
+
+    public boolean validateCapacity(int var1, long var2) {
+        ItemTemplate var4 = ItemHolder.getInstance().getTemplate(var1);
+        return this.validateCapacity(var4, var2);
+    }
+
+    public boolean validateCapacity(ItemTemplate var1, long var2) {
+        return this.validateCapacity(var1.isStackable() ? (long)(this.getItemByItemId(var1.getItemId()) == null ? 1 : 0) : var2);
+    }
+
+    public boolean validateCapacity(long var1) {
+        if (var1 == 0L) {
+            return true;
+        } else if (var1 >= -2147483648L && var1 <= 2147483647L) {
+            if (this.getSize() + (int)var1 < 0) {
+                return false;
+            } else {
+                return (long)this.getSize() + var1 <= (long)this.getActor().getInventoryLimit();
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public boolean validateWeight(ItemInstance var1) {
+        long var2 = (long)var1.getTemplate().getWeight() * var1.getCount();
+        return this.validateWeight(var2);
+    }
+
+    public boolean validateWeight(int var1, long var2) {
+        ItemTemplate var4 = ItemHolder.getInstance().getTemplate(var1);
+        return this.validateWeight(var4, var2);
+    }
+
+    public boolean validateWeight(ItemTemplate var1, long var2) {
+        long var4 = (long)var1.getWeight() * var2;
+        return this.validateWeight(var4);
+    }
+
+    public boolean validateWeight(long var1) {
+        if (var1 == 0L) {
+            return true;
+        } else if (var1 >= -2147483648L && var1 <= 2147483647L) {
+            if (this.getTotalWeight() + (int)var1 < 0) {
+                return false;
+            } else {
+                return (long)this.getTotalWeight() + var1 <= (long)this.getActor().getMaxLoad();
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public abstract void restore();
+
+    public abstract void store();
+
+    public int getSize() {
+        return super.getSize() - this.getQuestSize();
+    }
+
+    public int getQuestSize() {
+        int var1 = 0;
+
+        for(ItemInstance var5 : this.getItems()) {
+            if (var5.getTemplate().isQuest()) {
+                ++var1;
+            }
+        }
+
+        return var1;
+    }
+
+    public class InventoryListenerList extends ListenerList<Playable> {
+        public InventoryListenerList() {
+        }
+
+        public void onEquip(int var1, ItemInstance var2) {
+            this.forEachListener(OnEquipListener.class, (var3) -> var3.onEquip(var1, var2, Inventory.this.getActor()));
+        }
+
+        public void onUnequip(int var1, ItemInstance var2) {
+            this.forEachListener(OnEquipListener.class, (var3) -> var3.onUnequip(var1, var2, Inventory.this.getActor()));
+        }
+    }
+
+    public static class ItemOrderComparator implements Comparator<ItemInstance> {
+        private static final Comparator<ItemInstance> d = new ItemOrderComparator();
+
+        public ItemOrderComparator() {
+        }
+
+        public static final Comparator<ItemInstance> getInstance() {
+            return d;
+        }
+
+        public int compare(ItemInstance var1, ItemInstance var2) {
+            return var1 != null && var2 != null ? var1.getLocData() - var2.getLocData() : 0;
+        }
+    }
+}
