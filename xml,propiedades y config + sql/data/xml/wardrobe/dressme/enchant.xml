@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../xsd/wardrobe/dressme/enchant.xsd">
+<!-- 
+shirt - 0
+helmet - 1
+mask - 2
+necklace - 4
+weapon - 5
+chest - 6
+shield - 7
+earring1 -8
+earring2 - 9
+gloves - 10
+leggings - 11
+boots - 12
+ring1 - 13
+ring2 - 14 
+-->
+   <enchant number="1" id="729" level="40" bodypart="5" name="Epic Skin - Pure Red"> 
+        <price id="57" count="90000" /> 
+   </enchant> 
+   <enchant number="2" id="729" level="80" bodypart="6" name="Chest - Pure Red"> 
+        <price id="57" count="10000" /> 
+   </enchant> 
+    
+</list>

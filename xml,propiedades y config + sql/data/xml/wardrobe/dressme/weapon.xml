@@ -1,0 +1,972 @@
+<?xml version='1.0' encoding='utf-8'?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="../../../xsd/gabriel/dressme/weapon.xsd">
+<!--
+possible rarities
+
+NONE
+COMMON
+LESSCOMMON
+MIDGRADE
+HIGHGRADE
+EPIC
+LEGENDARY
+SPECIAL
+
+-->
+
+<!-- Sword -->
+    <weapon id="69" name="Bastard Sword" type="SWORD" rarity="NONE"> <!-- Inicio Grad D -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="83" name="Sword of Magic" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="123" name="Saber" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="125" name="Spinebone" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="126" name="Artisan's Sword" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="127" name="Crimson Sword" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="128" name="Knight's Sword" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="129" name="Sword of Revolution" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="130" name="Elven Sword" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="143" name="Sword of Mystic" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="144" name="Sword of Ocult" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2499" name="Elven Long Sword" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="7826" name="Traveler's Bastard Sword" type="BIGSWORD" rarity="NONE"> <!-- Fim Grad D -->
+        <price id="57" count="20"/>
+    </weapon> 
+	
+    <weapon id="72" name="Stormbringer" type="SWORD" rarity="NONE"> <!-- Inicio Grad C -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="73" name="Shamsir" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+
+    <weapon id="74" name="Katana" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>	
+    <weapon id="75" name="Caliburs" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>	
+	<weapon id="76" name="Sword Of Delusion" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="77" name="Tsurugi" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="84" name="Homunkulu's" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="131" name="Spirit Sword" type="SWORD" isMagic="true" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="149" name="Sword of Life" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="132" name="Sword of Limit" type="SWORD" isMagic="true" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="133" name="Raid Sword" type="SWORD" isMagic="true" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="134" name="Sword of Nightmare" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="135" name="Samurai Long Sword" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="145" name="Sword of Whispering Death" type="SWORD" rarity="NONE"> <!-- Fim Grad C -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+    <weapon id="79" name="Sword of Damascus" type="SWORD" rarity="NONE">  <!-- Inicio Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="142" name="Keshanberk" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="146" name="Ghoulbane" type="SWORD" isMagic="true" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="148" name="Sword of Valhalla" type="SWORD" isMagic="true" rarity="NONE"> <!-- Fim Grad B -->
+        <price id="57" count="20"/>
+    </weapon>		
+	
+	<weapon id="80" name="Tallum Blade" type="SWORD" rarity="NONE">  <!-- Inicio Grad A -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="85" name="Phantom Sword" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="150" name="Elemental Sword" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="151" name="Sword of Miracles" type="SWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2500" name="Dark Legion's Edge" type="SWORD" rarity="NONE"> <!-- Fim Grad A -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+	
+	<weapon id="6364" name="Forgotten Blade" type="SWORD" rarity="NONE">  <!-- Inicio Grad S -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="6611" name="Infinity Blade" type="SWORD" rarity="EPIC">  <!-- Fim Grad S -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+	
+	<!-- Big Sword -->
+	<weapon id="70" name="Claymore" type="BIGSWORD" rarity="NONE"> <!-- Inicio Grad D -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="124" name="Two-Handed Sword" type="BIGSWORD" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="5285" name="Heavy Sword" type="BIGSWORD" rarity="NONE"> <!-- Fim Grad D -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+	
+	<weapon id="711" name="Flamberge" type="BIGSWORD" rarity="NONE"> <!-- Inicio Grad D -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="5286" name="Berseker Blade" type="BIGSWORD" rarity="NONE"> <!-- Fim Grad D -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+	<weapon id="78" name="Greater Sword" type="BIGSWORD" rarity="NONE"> <!-- Inicio/Fim Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+	<weapon id="81" name="Dragon Slayer" type="BIGSWORD" rarity="NONE"> <!-- Inicio Grad A -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="8679" name="Sword of Ipos" type="BIGSWORD" rarity="NONE"> <!-- Fim Grad A -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+	<weapon id="6372" name="Heaven's Divider" type="BIGSWORD" rarity="NONE"> <!-- Inicio Grad S --> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="6612" name="Infinity Cleaver" type="BIGSWORD" rarity="EPIC"> <!-- Fim Grad S -->
+        <price id="57" count="20"/>
+    </weapon>
+
+
+<!-- Dual -->
+   <weapon id="2516" name="Saber*Saber" type="DUAL" rarity="NONE"> <!-- Inicio Grad D --> 
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2517" name="Saber*Bastard Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="25118" name="Saber*Spinebone Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2519" name="Saber*Artisan's Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2520" name="Saber*Knight's Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2521" name="Saber*Crismon Sword Long sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2522" name="Saber*Elven Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2525" name="Bastartd Sword*Bastartd Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2526" name="Bastartd Sword*Spinebone Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2527" name="Bastartd Sword*Artisan's Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2528" name="Bastartd Sword*Knight's Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2529" name="Bastartd Sword*Crismon Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2533" name="Spinebone Sword*Spinebone Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2534" name="Spinebone Sword*Artisan's Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2535" name="Spinebone Sword*Knight's Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2536" name="Spinebone Sword*Crismon Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2537" name="Spinebone Sword*Elven Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+
+	<weapon id="2539" name="Spinebone Sword*Elven Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2540" name="Artisan's Sword*Artisan's Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2541" name="Artisan's Sword*Knight's Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2542" name="Artisan's Sword*Crismon Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2543" name="Artisan's Sword*Elven Sword" type="DUAL" rarity="NONE"> <!-- Fim Grad D --> 
+        <price id="57" count="20"/>
+    </weapon>
+    
+    
+    
+	<weapon id="2523" name="Saber*Sword Of Revolution" type="DUAL" rarity="NONE"> <!-- Inicio Grad C --> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2522" name="Saber*Elven Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2531" name="Bastartd Sword*Sword of Revolution" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2530" name="Bastartd Sword*Elven Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>	
+	<weapon id="2538" name="Spinebone Sword*Sword Of Revolution" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2538" name="Spinebone Sword*Elven Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2544" name="Artisan's Sword*Sword Of Revolution" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2545" name="Artisan's Sword*Elven Long Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2549" name="Knight's Sword*Sword Of Revolution" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2551" name="Crimson Sword*Crimson Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2552" name="Crimson Sword*Elven Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2553" name="Crimson Sword*Sword of Revolution" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2554" name="Crimson Sword*Elven Long Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>	
+	<weapon id="2555" name="Elven Sword*Elven Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2556" name="Elven Sword*Sword of Revolution" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2557" name="Elven Sword*Elven Long Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2558" name="Sword of Revolution*Sword of Revolution" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2559" name="Sword of Revolution*Elven Long Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2560" name="Elven Long Sword*Elven Long Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>	
+	<weapon id="2561" name="Stormbringer*Stormbringer" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2562" name="Stormbringer*Samshir" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2563" name="Stormbringer*Katana" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2564" name="Stormbringer*Spirit Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2565" name="Stormbringer*Raid Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>	
+	<weapon id="2572" name="Shamshir*Shamshir" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+	</weapon>
+	<weapon id="2573" name="Shamshir*Katana" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2574" name="Shamshir*Spirit Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2575" name="Shamshir*Raid Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>	
+	<weapon id="2582" name="Katana*Katana" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+	</weapon>
+	<weapon id="2583" name="Katana*Spirit Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2584" name="Katana*Raid Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2591" name="Spirit Sword*Katana" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+	</weapon>
+	<weapon id="2592" name="Spirit Sword*Raid Sword" type="DUAL" rarity="NONE"> 
+        <price id="57" count="20"/>
+	</weapon>
+	<weapon id="2599" name="Raid Sword*Raid Sword" type="DUAL" rarity="NONE">  <!-- Fim Grad C --> 
+        <price id="57" count="20"/>
+	</weapon>
+	
+	
+	
+	
+	<weapon id="2577" name="Shamshir*Sword of Limit" type="DUAL" rarity="NONE"> <!-- Inicio Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2578" name="Shamshir*Sword of Delusion" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2579" name="Shamshir*Sword of Nightmare" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2580" name="Shamshir*Tsurugi" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2581" name="Shamshir*Samurai Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2585" name="Katana*Caliburs" type="DUAL" rarity="NONE">  
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2586" name="Katana*Sword of Limit" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2587" name="Katana*Sword of Delusion" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2588" name="Katana*Sword of Nightmare" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2589" name="Katana*Tsurugi" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2590" name="Katana*Samurai Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2593" name="Spirit Sword*Caliburs" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2594" name="Spirit Sword*Sword of Limit" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2595" name="Spirit Sword*Sword of Delusion" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2596" name="Spirit Sword*Sword of Nightmare" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2597" name="Spirit Sword*Tsurugi" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2598" name="Spirit Sword*Samurai Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2600" name="Raid Sword*Caliburs" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2601" name="Raid Sword*Sword of Limit" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2602" name="Raid Sword*Sword of Delusion" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2603" name="Raid Sword*Sword of Nightmare" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2604" name="Raid Sword*Tsurugi" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2605" name="Raid Sword*Samurai Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2606" name="Caliburs*Caliburs" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2607" name="Caliburs*Sword of Limit" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2608" name="Caliburs*Sword of Delusion" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2609" name="Caliburs*Sword of Nightmare" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2610" name="Caliburs*Tsurugi" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2611" name="Caliburs*Samurai Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2612" name="Sword of Limit*Sword of Limit" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2613" name="Sword of Limit*Sword of Delusion" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2614" name="Sword of Limit*Sword of Nightmare" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2615" name="Sword of Limit*Tsurugi" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2616" name="Sword of Limit*Samurai Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2617" name="Sword of Delusion*Sword of Delusion" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2618" name="Sword of Delusion*Sword of Nightmare" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2619" name="Sword of Delusion*Tsurugi" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2620" name="Sword of Delusion*Samurai Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2621" name="Sword of Nightmare*Sword of Nightmare" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2622" name="Sword of Nightmare*Tsurugi" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2623" name="Sword of Nightmare*Samurai Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2624" name="Tsurugi*Tsurugi" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2625" name="Tsurugi*Samurai Long Sword" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="2626" name="Samurai Long Sword*Samurai Long Sword" type="DUAL" rarity="NONE"> <!-- Fim Grad B -->
+        <price id="57" count="20"/>
+	</weapon>
+    <weapon id="5233" name="Keshanberk*Keshanberk" type="DUAL" rarity="NONE"> <!-- Fim Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="5704" name="Keshanberk*Keshanberk" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="5705" name="Keshanberk*Damascus" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="5706" name="Damascus*Damascus" type="DUAL" rarity="NONE"> <!-- Fim Grad A -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="8938" name="Damascus * Tallum Blade" type="DUAL" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="6580" name="Tallum Blade*Dark Legion's Edge" type="DUAL" rarity="NONE"> <!-- Inicio Grad S -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="6722" name="Infinity Wing" type="DUAL" rarity="EPIC"> <!-- Fim Grad S -->
+        <price id="57" count="20"/>
+    </weapon>
+
+
+
+<!-- Dagger -->
+	<weapon id="220" name="Crafted Dagger" type="DAGGER" rarity="NONE"> <!-- Inicio Grad D -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="221" name="Assassin Knight" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="222" name="Poniard Dagger" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="223" name="Kukuri" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="224" name="Maingauche" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="225" name="Mithril Dagger" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="238" name="Daggeer of Mana" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="239" name="Mystic Knife" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="240" name="Conjurer's Knife" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="241" name="Shilen Knife" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="1660" name="Cursed Mainngauche" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="7830" name="Traveler's Poniard Dagger" type="DAGGER" rarity="NONE"> <!-- Fim Grad D -->
+        <price id="57" count="20"/>
+    </weapon>
+
+
+	<weapon id="226" name="Cursed Dagger" type="DAGGER" rarity="NONE"> <!-- Inicio Grad C -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="227" name="Stiletto" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="228" name="Crystal Dagger" type="DAGGER" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="230" name="Wolverine Needle" type="DAGGER" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="231" name="Grace Dagger" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="232" name="Dark Elven Dagger" type="DAGGER" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="233" name="Dark Screamer" type="DAGGER" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="7830" name="SoulFire Dirk" type="DAGGER" rarity="NONE"> <!-- Fim Grad C -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="229" name="Kris" type="DAGGER" rarity="NONE"> <!-- Inicio Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="234" name="Demon Dagger" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="243" name="Hell Knife" type="DAGGER" rarity="NONE"> <!-- Fim Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="235" name="Bloody Orchid" type="DAGGER" rarity="NONE"> <!-- Inicio Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="8682" name="Naga Storm" type="DAGGER" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon> 
+    <weapon id="236" name="Soul Separator" type="DAGGER" rarity="NONE">  <!-- Fim Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="6367" name="Angel Slayer" type="DAGGER" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="6617" name="Infinity Stinger" type="DAGGER" rarity="NONE"> <!-- Fim Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+<!-- Bow -->
+    <weapon id="281" name="Crystallizeed Ice Bow" type="BOW" rarity="NONE"> <!-- Inicio Grad C -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="282" name="Elemental Bow" type="BOW" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="283" name="Akat Long Bow" type="BOW" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="285" name="Noble Elven Bow" type="BOW" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="281" name="Crystallizeed Ice Bow" type="BOW" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="286" name="Eminance Bow" type="BOW" rarity="NONE"> <!-- Fim Grad C -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="284" name="Dark Elven Long Bow" type="BOW" rarity="NONE"> <!-- Inicio Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="287" name="Bow of Peril" type="BOW" rarity="NONE"> <!-- Fim Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="288" name="Carnage Bow" type="BOW" rarity="NONE"> <!-- Inicio Grad A -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="289" name="Soul Bow" type="BOW" rarity="NONE"> <!-- Fim Grad A -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+    <weapon id="6368" name="Shining Bow" type="BOW" rarity="NONE"> <!-- Inicio Grad S -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="7575" name="Draconic Bow" type="BOW" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="8684" name="Infinity Bow" type="BOW" rarity="EPIC"> <!-- Fim Grad S -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+	
+<!-- Dual first -->
+
+	<weapon id="258" name="Bagh''Nakh" type="DUALFIST" rarity="NONE"> <!-- Inicio Grad D -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="259" name="Single-Edged Jamadhr" type="DUALFIST" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="260" name="Triple-Edged Jamadhr" type="DUALFIST" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="261" name="Bich'Hwa" type="DUALFIST" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="262" name="Scallop Jamadhr" type="DUALFIST" rarity="NONE"> <!-- Fim Grad D -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+	
+	<weapon id="263" name="Chakram" type="DUALFIST" rarity="NONE"> <!-- Inicio Grad C -->
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="265" name="Fisted Blade" type="DUALFIST" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="266" name="Grat Pata" type="DUALFIST" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="4233" name="Knuckle Duster" type="DUALFIST" rarity="NONE"> <!-- Fim Grad C -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+	
+    <weapon id="264" name="Pata" type="DUALFIST" rarity="NONE"> <!-- Inicio Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="267" name="Arthro Nail" type="DUALFIST" rarity="NONE"> 
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="268" name="Bellion Cestus" type="DUALFIST" rarity="NONE"> <!-- Fim Grad B -->
+        <price id="57" count="20"/>
+    </weapon>
+	
+    <weapon id="269" name="Blood Tornado" type="DUALFIST" rarity="NONE">  <!-- Inicio Grad A -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="270" name="Dragon Grinder" type="DUALFIST" rarity="NONE"> <!-- Fim Grad A -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="6371" name="Demon Splinter" type="DUALFIST" rarity="NONE"> <!-- Inicio Grad S -->
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="8685" name="Infinity Fang" type="DUALFIST" rarity="EPIC"> <!-- Fim Grad S -->
+        <price id="57" count="20"/>
+    </weapon>
+
+<!-- Pole -->
+	<weapon id="93" name="Winged Spear" type="POLE" rarity="NONE"> <!-- Inicio Grad D -->
+        <price id="57" count="20"/>                               
+    </weapon>                                                     
+    <weapon id="291" name="Trident" type="POLE" rarity="NONE">    
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="292" name="Pike" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="293" name="War Hammer" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="294" name="War Pick" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="295" name="Dwarven Trident" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="296" name="Dwarven Pike" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="297" name="Glaive" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="1376" name="Guard Spear" type="POLE" rarity="NONE"> <!-- Fim Grad D -->
+        <price id="57" count="20"/>
+    </weapon>
+
+
+	<weapon id="94" name="Bec de Corbin" type="POLE" rarity="NONE"> <!-- Inicio Grad C -->
+        <price id="57" count="20"/>                               
+    </weapon>                                                     
+    <weapon id="95" name="Poleaxe" type="POLE" rarity="NONE">    
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="96" name="Scythe" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="298" name="Orcish Glaive" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="299" name="Orcish Poleaxe" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="301" name="scorpion" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="302" name="Body Slasher" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="303" name="Widow Maker" type="POLE" rarity="NONE"> <!-- Fim Grad C -->
+        <price id="57" count="20"/>
+    </weapon>
+
+	
+    <weapon id="97" name="Lance" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+		<weapon id="300" name="Great Axe" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	
+	
+    <weapon id="98" name="Halberd" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+
+    <weapon id="304" name="Orcish Halberd" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="305" name="Tallum Glaive" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	
+	
+     <weapon id="6370" name="Saint Spear" type="POLE" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>	
+    <weapon id="6621" name="Infinity Spear" type="POLE" rarity="EPIC">
+        <price id="57" count="20"/>
+    </weapon>
+
+
+<!-- Blunt -->
+	
+	<weapon id="86" name="Tomahawk" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="88" name="Morning Star" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="156" name="Hand Axe" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="157" name="Spiked Club" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="158" name="Tarbar" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="159" name="Bonebreaker" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="166" name="Heavy Mace" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="167" name="Scalpel" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="168" name="Work Hammer" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="169" name="Skull Breaker" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="172" name="Heavy Bone Club" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="179" name="Mace of Prayer" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="180" name="Mace of Judgment" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="181" name="Mace of Miracle" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="182" name="Doom Hammer" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="189" name="Staff of Life" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	
+	
+	<weapon id="2503" name="Yaksa Mace" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="162" name="War Axe" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="202" name="Mace of The Underworld" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="201" name="Club of Nature" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="196" name="Stick of Eternity" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="174" name="Nirvana Axe" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="2502" name="Dwarven War Hammer" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="173" name="Skull Graver" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="161" name="Silver Axe" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="162" name="Battle Axe" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="193" name="Stick of Faith" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	
+	
+	
+	
+    <weapon id="91" name="Heavy War Axe" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="171" name="Deadman's Glory" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="175" name="Art of Battle Axe" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+
+
+	
+    <weapon id="164" name="Elysian" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	 <weapon id="2504" name="Meteor Shower" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	
+	<weapon id="6579" name="Arcana Mace" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	    <weapon id="6365" name="Basalt Battlehammer" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	
+    <weapon id="165" name="Infinity Axe" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="165" name="Infinity Rod" type="BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	
+    
+
+
+	
+<!-- Dual Blunt -->
+    <weapon id="92" name="Sprite's Staff" type="BIG BLUNT" isMagic="true" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="207" name="Staff of Phantom" type="BIG BLUNT" isMagic="true" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="213" name="Branch of the Mother Tree" type="BIG BLUNT" isMagic="true" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="214" name="The Staff" type="BIG BLUNT" isMagic="true" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="7893" name="Kaim Vanul's Bones" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="7894" name="Spiritual Eye" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="7899" name="Destroyer Hammer" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="7900" name="Ice Storm Hammer" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="7901" name="Star Buster" type="BIG BLUNT" isMagic="true" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="7902" name="Doom Crusher" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+   <weapon id="7892" name="Spell Breaker" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="4904" name="Dasparion's Staff" type="BIG BLUNT" isMagic="true" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="6366" name="Imperial Staff" type="BIG BLUNT" isMagic="true" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="8763" name="Elrokian Trap" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="8680" name="Barakiel's Axe" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="8681" name="Behemoth's Tuning Fork" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+	<weapon id="6369" name="Dragon Hunter Axe" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    <weapon id="6532" name="KingFisher Rod" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+    
+
+    <weapon id="6533" name="Cygnus Pole" type="BIG BLUNT" rarity="NONE">
+        <price id="57" count="20"/>
+    </weapon>
+
+</list>
+
+
